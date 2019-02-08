@@ -1,0 +1,12 @@
+body {
+    margin: 0;
+}
+
+
+/* Potato code, library is bugged HARD */
+.rbc-addons-dnd-resize-ns-anchor {
+    display: none !important;
+}
+.rbc-addons-dnd-resize-ew-anchor {
+    display: none !important;
+}
