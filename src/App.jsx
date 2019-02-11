@@ -10,7 +10,7 @@ import Calendar from "./components/Calendar";
 
 const storeEnhancers = compose(
     applyMiddleware(thunk),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    /*window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()*/ // UNCOMMENT FOR REDUX DEVTOOLS
 );
 const store = createStore(combinedReducers, storeEnhancers);
 
