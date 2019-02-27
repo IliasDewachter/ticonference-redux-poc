@@ -36,7 +36,7 @@ export const createEvent = (title, { start, end, allDay }) => dispatch => {
         id: generateId()
     };
 
-    axios.post(`${url}/event`, { event });
+    axios.post(`${url}/events`, { event });
 
     dispatch({
         type: CREATE_EVENT,
@@ -44,12 +44,14 @@ export const createEvent = (title, { start, end, allDay }) => dispatch => {
     });
 };
 
+
+
 export const updateEvent = ({ id, title, start, end, allDay }) => dispatch => {
     const event = {
         id, title, start, end, allDay,
     };
 
-    axios.put(`${url}/event`, { event });
+    axios.put(`${url}/event/${id}`, { event });
 
     dispatch({
         type: UPDATE_EVENT,
@@ -57,8 +59,10 @@ export const updateEvent = ({ id, title, start, end, allDay }) => dispatch => {
     });
 };
 
+
+
 export const deleteEvent = (id) => dispatch => {
-    axios.delete(`${url}/event/${id}`,);
+    axios.delete(`${url}/event/${id}`);
 
     dispatch({
         type: DELETE_EVENT,

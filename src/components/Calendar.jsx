@@ -7,7 +7,7 @@ import moment from 'moment';
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import connect from "react-redux/es/connect/connect";
-import { createEvent, updateEvent, deleteEvent } from "../actions/calendar.action";
+import { createEvent, updateEvent, deleteEvent, fetchEvents } from "../actions/calendar.action";
 
 import styles from './Calendar.module.css';
 
@@ -33,10 +33,17 @@ class Calendar extends React.PureComponent {
         );
     }
 
-    handleEventChange = (event) => {
-        const newEvent = _.defaults(event, event.event);
 
+    componentDidMount = () => {
+        const { fetchEvents } = this.props;
+        fetchEvents();
+    };
+
+
+    handleEventChange = (event) => {
         const { updateEvent } = this.props;
+        const newEvent = _.defaults(event, event.event);
+        newEvent.allDay = newEvent.isAllDay;
         updateEvent(newEvent);
     };
 
@@ -62,6 +69,7 @@ const mapDispatchToProps = dispatch => ({
     createEvent: (title, data) => dispatch(createEvent(title, data)),
     updateEvent: (data) => dispatch(updateEvent(data)),
     deleteEvent: (id) => dispatch(deleteEvent(id)),
+    fetchEvents: () => dispatch(fetchEvents())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Calendar);
